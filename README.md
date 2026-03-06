@@ -7,58 +7,57 @@ PZEM-003
 PEZM-017
 
 
-Spezifikationen :
+Specifications :
 
-Spannung:          0,05V* bis 300V
-  Auflösung :                0,01V
-  Messgemauigkeit :             1%
-* unter 7V muss ein externen Netzteil benutzt werden
+Voltage Rating:          0,05V* to 300V
+  Resolution :                0,01V
+  Measuring accuracy :             1%
+* Under 7V, an external power supply must be used
 
-Strom : PZEM-003     0,01A bis 10A
-        PZEM-017    0,02A bis 300A*
-  Auflösung :                0,01A
-  Messgemauigkeit :             1%
+Current Rating: PZEM-003     0,01A to 10A
+        PZEM-017    0,02A to 300A*
+  Resolution :                0,01A
+  Measuring Accuracy :             1%
 
-Leistung :  PZEM-003  0,1kW bis 3kW
-            PZEM-017 0,2kW bis 90KW*
-  Auflösung :                0,01W
-  Messgemauigkeit :             1%           
-* abhängig vom verwendetem Shunt (50, 100, 200, 300A)
+Wattage Rating:  PZEM-003  0,1kW to 3kW
+                 PZEM-017 0,2kW to 90KW*
+  Resolution :                0,01W
+  Measuring Accuracy :             1%           
+* Depending on the shunt used (50, 100, 200, 300A)
 
-Verbrauchsmessung :        0-9999kWh
-  Auflösung :                   1Wh
-  Messgemauigkeit :             1%
+Consumption measurement:        0-9999kWh
+  Resolution :                   1Wh
+  Measuring Accuracy :             1%
 
 
 
-Für die Spannung kann ein HIGH und ein LOW Alarm definiert werden.
- LOW     1V bis 350V     (in 0,01V Schritten)
- HIGH    5V bis 350V     (in 0,01V Schritten)
- Defaultwert für LOW ist 7V und für HIGH 300V
+A HIGH and a LOW alarm can be defined for the voltage.
+ LOW     1V to 350V     (in 0,01V Steps)
+ HIGH    5V to 350V     (in 0,01V Steps)
+ Default value for LOW is 7V and for HIGH 300V
 
-Die Schnittstelle ist
+The interface is
  RS485 / MODBUS-RTU
  Baudrate :                   9600
  Data Bits :                     8
  Stopbit :                       2
- Parity :                    keine
+ Parity :                    none
 
-Die PZEM unterstützen folgene Funktions Codes:
- 0x03(3)   Lesen der Konfigurations Register  
- 0x04(4)   Lesen der Messwert Register
- 0x06(6)   Schreiben der Konfigurations Register 
- 0x41(65)  Kallibierung (nur über Adresse 0xF8 (248) nutzbar) 
- 0x42(66)  Reset Verbrauchszähler
+The PZEM supports the following function codes:
+ 0x03(3)   Reading the Configuration Registers
+ 0x04(4)   Reading the Measured Register
+ 0x06(6)   Writing the Configuration Registers 
+ 0x41(65)  Calibration (can only be used via address 0xF8 (248))
+ 0x42(66)  Reset Consumption Meter
 
-Die Adresse kann zwischen 
- 0x01(1) und 0xF7(247) festgelegt werden. 
- 0x00(0) ist die Broadcastadresse und 
- 0xF8(248) kann benutzt werden um die PZEM anzuspechen, wenn nur EIN Gerät am Bus hängt. Nützlich 
- um Geräte zu konfigurieren oder wenn sowieso nur ein Gerät vorhanden ist.
+The address can be exchanged between
+ 0x01(1) and 0xF7(247).
+ 0x00(0) is the broadcast address and
+ 0xF8(248) can be used to address the PZEM if only ONE device is connected to the bus. Useful to configure devices or if there is only one device anyway.
 
-Die Register welche mit Funktionscode 0x03 ausgelesen oder mit 0x06 geschrieben werden können:
-
- Register  |   Beschreibung                 |  Auflösung
+The registers that can be read out with function code 0x03 or written with 0x06:
+  
+ Register  |   Description                 |  Resolution
  ----------|--------------------------------|----------------------
  0x0000    |   High voltage alarm threshold |  1LSB correspond
            |   (5-350V), default is 300V    |  to 0.01V
@@ -74,9 +73,9 @@ Die Register welche mit Funktionscode 0x03 ausgelesen oder mit 0x06 geschrieben 
            |                                |  0x0003  200A
            |                                |  0x0004  300A 
            
-Die Register welche mit Funktionscode 0x04 ausgelesen werden können:
+The registers which can be read out with function code 0x04:
 
- Register  |   Beschreibung                 |  Auflösung
+ Register  |   Description                 |  Resolution
  ----------|--------------------------------|-----------------------------------------
  0x0000    |   Voltage value                |  1LSB correspond to O.O1V
  -------------------------------------------------------------------------------------
